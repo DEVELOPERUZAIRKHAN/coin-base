@@ -4,9 +4,16 @@ const {PORT}= require('./config/index.js')
 const router=require("./routes/index.js")
 const errorHandler= require("./middlewares/errorHandler.js")
 const cookieParser=require("cookie-parser")
+const cors=require("cors");
+
+const corsOptions={
+    credentials:true,
+    origin:"http://localhost:3000"
+}
 dbConnect()
 
 const app=express()
+app.use(cors(corsOptions))
 app.use("/storage",express.static("storage"))
 app.use(cookieParser())
 app.use(express.json())
