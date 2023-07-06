@@ -72,7 +72,8 @@ export const submitBlog= async (data)=>{
 export const getBlogById= async(id)=>{
     let response;
     try{
-        response=await api.get("/blog/"+ id)
+        response=await api.get(`/blog/${id}`)
+        console.log(response)
     }
 catch(error){
     return error
@@ -80,10 +81,11 @@ catch(error){
 return response;
 }
 
-export const getCommentsById= async(id)=>{
+export const getCommentsById = async(id)=>{
     let response;
     try{
         response= await api.get("/comment/"+id,{validateStatus:false})
+        
     }
     catch(error){
         return error

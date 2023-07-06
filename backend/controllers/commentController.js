@@ -1,6 +1,6 @@
 const Joi= require("joi")
 const Comment= require("../models/comment.js")
-const CommentDTO= require("../dto/comment.js")
+const commentsDTO= require("../dto/comment.js")
 const mongodbIdPattern = /^[0-9a-fA-F]{24}$/
 const commentController = {
     async getById(req,res,next){
@@ -24,15 +24,16 @@ catch(error){
 return next(error)
 }
 
-let commentsDTO=[]
-for(let i=0;i<comments;i++){
-    const obj= new CommentDTO(comments[i])
-    commentsDTO.push(obj)
+let commentDTO=[]
+for(let i=0;i<comments.length;i++){
+    const obj= new commentsDTO(comments[i])
+    commentDTO.push(obj)
 }
 
 
 
-res.status(200).json({data:commentsDTO})
+
+res.status(200).json({data:commentDTO})
 
 
 
